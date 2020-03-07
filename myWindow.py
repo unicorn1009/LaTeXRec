@@ -33,7 +33,7 @@ class QmyWidget(QMainWindow):
     def select_img(self):
         fname, _ = QFileDialog.getOpenFileName(self, "选择图片", ".", "(*.jpg | *.png)")
         if fname != "":
-            print(fname)
+            # print(fname)
             self.ui.imgPrevie.setPixmap(QPixmap(fname))
             self.recognize(fname)
 

@@ -34,10 +34,10 @@ class ImgToLatex:
                 "latex_styled": {"transforms": ["rm_spaces"]}
             }
         })
-        print(r['latex_simplified'])
-        print(r['latex_styled'])
-        print(r['asciimath'])
-        print(r)
+        # print(r['latex_simplified'])
+        # print(r['latex_styled'])
+        # print(r['asciimath'])
+        # print(r)
 
         return r
 
