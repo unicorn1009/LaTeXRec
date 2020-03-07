@@ -1,6 +1,6 @@
 import os
-import sys
 
+import requests
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLabel, QFileDialog
@@ -8,7 +8,6 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QLabel, QFileDia
 from Ui.mainWIndow import Ui_MainWindow
 from Ui.setting import Ui_Dialog
 from YamlHandler import YamlHandler
-from latex2img import render_latex
 from recognize import ImgToLatex
 
 
@@ -92,7 +91,8 @@ class QmyWidget(QMainWindow):
                 # 创建状态栏上的组件
                 self.status_label.setText("预估准确率： {0:.2f}%".format(result["latex_confidence_rate"] * 100))
                 # 输出识别后的latex公式图片
-                image_bytes = render_latex(result['latex_simplified'], fontsize=10, dpi=300, format_='png')
+                # image_bytes = render_latex(result['latex_simplified'], fontsize=10, dpi=300, format_='png')
+                image_bytes = requests.get("https://latex.codecogs.com/png.latex?" + result['latex_simplified']).content
                 with open('result.png', 'wb') as image_file:
                     image_file.write(image_bytes)
                 output_png = QPixmap('./result.png')
